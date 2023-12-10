@@ -45,6 +45,11 @@ runs:
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
+      entrypoint: /bin/sh
+      args: echo $GITHUB_STEP_SUMMARY
+
+  - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
+    with:
       args: >
         --format ${{ steps.cli.outputs.variables-format }}
         --outfile ${{ steps.cli.outputs.output }}
