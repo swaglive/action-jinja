@@ -24,4 +24,5 @@ jobs:
             "steps": ["a", "b", "c"]
           }
 
-    - run: cat <<< $'${{ steps.job-summary.outputs.output }}' >> $GITHUB_STEP_SUMMARY
+    - name: Save Job Summary
+      run: tee $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary.outputs.output }}'
