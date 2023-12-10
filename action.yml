@@ -22,12 +22,11 @@ inputs:
 outputs:
   output:
     description: 'Contents of the rendered template'
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+    value: ${{ steps.renderer.outputs.output }}
 runs:
   using: composite
   steps:
-  - name: Configure CLI options
-    id: cli
+  - id: cli
     shell: bash
     run: python pre-entrypoint.py
     env:
@@ -39,8 +38,7 @@ runs:
       INPUT_OUTPUT-FORMAT: ${{ inputs.output-format }}
       INPUT_STRICT: ${{ inputs.strict }}
 
-  - name: Render template
-    uses: docker://ghcr.io/swaglive/jinja2:3.1.2
+  - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
       args: >
         --format ${{ steps.cli.outputs.variables-format }}
@@ -48,8 +46,7 @@ runs:
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
 
-  - name: Load `output`
-    id: outputs
+  - id: renderer
     shell: bash
     run: |
       {
