@@ -4,19 +4,6 @@ import tempfile
 import pathlib
 
 
-os.environ.update({
-    'GITHUB_WORKSPACE': '/Users/allan/Documents/action-jinja',
-    'GITHUB_STATE': 'state.env',
-    'GITHUB_STEP_SUMMARY': 'summary.md',
-    'INPUT_template': '.github/templates/job-summary.md.jinja',
-    'INPUT_template-format': 'file',
-    'INPUT_variables': '{\n  \"jobs\": 1,\n  \"steps\": [\"a\", \"b\", \"c\"]\n}',
-    'INPUT_variables-format': 'json',
-    'INPUT_output': 'GITHUB_STEP_SUMMARY',
-    'INPUT_output-format': 'env',
-})
-
-
 GITHUB_WORKSPACE = os.environ['GITHUB_WORKSPACE']
 WORKDIR = pathlib.Path(
     tempfile.mkdtemp(prefix='.', dir=GITHUB_WORKSPACE),
@@ -56,7 +43,7 @@ def generate_state():
     if output_format in {'env'}:
         output = os.environ[output]
 
-    yield 'outfile', output
+    yield 'output', output
 
 
 with open(os.environ['GITHUB_STATE'], 'a') as GITHUB_STATE:
