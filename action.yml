@@ -51,6 +51,7 @@ runs:
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
   
-  - name: Set output as environment variable
+  - name: Copy output to env output
     if: ${{ steps.cli.outputs.output-format == 'env' }}
+    shell: bash
     run: cat ${{ steps.cli.outputs.output }} >> $${{ inputs.output }}
