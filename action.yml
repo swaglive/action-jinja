@@ -45,8 +45,7 @@ runs:
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
-      entrypoint: /bin/sh -c
-      args: echo "$GITHUB_STEP_SUMMARY"
+      entrypoint: env
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
