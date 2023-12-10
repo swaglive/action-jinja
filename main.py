@@ -27,7 +27,7 @@ def generate_state():
     variables = os.environ['INPUT_VARIABLES']
     variables_format = os.environ['INPUT_VARIABLES-FORMAT']
 
-    if variables_format.endswith('-file'):
+    if not variables_format.endswith('-file'):
         variables_format = variables_format[:len('-file') - 1]
         variables_file = WORKDIR.joinpath(f'variables.{variables_format}')
         variables_file.write_text(variables)
