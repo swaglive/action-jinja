@@ -17,7 +17,7 @@ jobs:
       id: job-summary-1
       uses: ./
       with:
-        template: .github/templates/job-summary.md.jinja
+        template: .github/workflows/test/job-summary.md.jinja
         variables: |-
           {
             "jobs": 1,
