@@ -30,7 +30,7 @@ def generate_state():
         variables_format = variables_format.rstrip('-file')
         variables_file = WORKDIR.joinpath(f'variables.{variables_format}')
         variables_file.write_text(variables)
-        variables = str(variables_file.relative_to(GITHUB_WORKSPACE))        
+        variables = str(variables_file.relative_to(GITHUB_WORKSPACE))
 
     yield 'variables-format', variables_format
     yield 'variables', variables
@@ -41,7 +41,9 @@ def generate_state():
     output_format = os.environ['INPUT_OUTPUT-FORMAT']
 
     if output_format in {'env'}:
-        output = os.environ[output]
+        output_file = WORKDIR.joinpath(f'output')
+        output_file.hardlink_to(os.environ[output])
+        output = str(output_file.relative_to(GITHUB_WORKSPACE))
 
     yield 'output', output
 
