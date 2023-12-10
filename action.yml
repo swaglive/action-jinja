@@ -40,7 +40,6 @@ runs:
       INPUT_STRICT: ${{ inputs.strict }}
 
   - name: Render template
-    id: render-template
     uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
       args: >
@@ -55,6 +54,6 @@ runs:
     run: |
       {
         echo 'output<<EOF'
-        cat ${{ steps.render-template.outputs.output }}
+        cat ${{ steps.cli.outputs.output }}
         echo EOF
       } >> $GITHUB_OUTPUT
