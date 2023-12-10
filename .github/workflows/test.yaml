@@ -14,13 +14,14 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Generate Job Summary
+      id: job-summary
       uses: ./
       with:
         template: .github/templates/job-summary.md.jinja
-        output: GITHUB_STEP_SUMMARY
-        output-format: env
         variables: |-
           {
             "jobs": 1,
             "steps": ["a", "b", "c"]
           }
+
+    - run: cat <<< $'${{ steps.job-summary.outputs.output }}' >> $GITHUB_STEP_SUMMARY

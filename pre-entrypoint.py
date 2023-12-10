@@ -37,16 +37,10 @@ def generate_state():
     yield 'variables-format', variables_format
 
 
-    # Process `output`/`output-format` -> `output`
-    output = os.environ['INPUT_OUTPUT']
-    output_format = os.environ['INPUT_OUTPUT-FORMAT']
-
-    if output_format in {'env'}:
-        output_file = WORKDIR.joinpath(f'output')
-        output = str(output_file.relative_to(GITHUB_WORKSPACE))
-
-    yield 'output', output
-    yield 'output-format', output_format
+    # # Process `output`/`output-format` -> `output`
+    # output_file = WORKDIR.joinpath(f'output')
+    # output = str(output_file.relative_to(GITHUB_WORKSPACE))
+    # yield 'output', output
 
 
 with open(os.environ['GITHUB_OUTPUT'], 'a') as GITHUB_OUTPUT:

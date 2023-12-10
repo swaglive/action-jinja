@@ -15,18 +15,14 @@ inputs:
     description: 'To be used with the "variables" input, can be one of: env, env_file, ini, ini_file, yaml, yaml_file, json, json_file'
     required: false
     default: json
-  output:
-    description: 'Destination write rendered template to. One of: env, file'
-    required: false
-    default: /dev/stdout
-  output-format:
-    description: 'To be used with the "output" input, can be one of: env, file'
-    required: false
-    default: file
   strict:
     description: 'Fails on missing values'
     required: false
     default: false
+outputs:
+  output:
+    description: 'Contents of the rendered template'
+    value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: composite
   steps:
@@ -43,15 +39,22 @@ runs:
       INPUT_OUTPUT-FORMAT: ${{ inputs.output-format }}
       INPUT_STRICT: ${{ inputs.strict }}
 
-  - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
+  - name: Render template
+    id: render-template
+    uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
       args: >
         --format ${{ steps.cli.outputs.variables-format }}
         --outfile ${{ steps.cli.outputs.output }}
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
-  
-  - name: Copy output to env output
-    if: ${{ steps.cli.outputs.output-format == 'env' }}
+
+  - name: Load `output`
+    id: outputs
     shell: bash
-    run: cat ${{ steps.cli.outputs.output }} >> $${{ inputs.output }}
+    run: |
+      {
+        echo 'output<<EOF'
+        cat ${{ steps.render-template.outputs.output }}
+        echo EOF
+      } >> $GITHUB_OUTPUT
