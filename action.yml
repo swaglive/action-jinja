@@ -50,3 +50,7 @@ runs:
         --outfile ${{ steps.cli.outputs.output }}
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
+  
+  - name: Set output as environment variable
+    if: ${{ steps.cli.outputs.output-format == 'env' }}
+    run: cat ${{ steps.cli.outputs.output }} >> $${{ inputs.output }}

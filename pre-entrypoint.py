@@ -20,6 +20,7 @@ def generate_state():
         template = str(template_file.relative_to(GITHUB_WORKSPACE))
 
     yield 'template', template
+    yield 'template-format', template_format
 
 
     # Process `variables`/`variables-format` -> `variables`
@@ -32,8 +33,8 @@ def generate_state():
         variables_file.write_text(variables)
         variables = str(variables_file.relative_to(GITHUB_WORKSPACE))
 
-    yield 'variables-format', variables_format
     yield 'variables', variables
+    yield 'variables-format', variables_format
 
 
     # Process `output`/`output-format` -> `output`
@@ -42,10 +43,10 @@ def generate_state():
 
     if output_format in {'env'}:
         output_file = WORKDIR.joinpath(f'output')
-        output_file.hardlink_to(os.environ[output])
         output = str(output_file.relative_to(GITHUB_WORKSPACE))
 
     yield 'output', output
+    yield 'output-format', output_format
 
 
 with open(os.environ['GITHUB_OUTPUT'], 'a') as GITHUB_OUTPUT:
