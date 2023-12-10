@@ -19,12 +19,6 @@ jobs:
       with:
         template-format: file
         template: .github/workflows/test/job-summary.md.jinja
-        variables-format: json
-        variables: |-
-          {
-            "job": "json",
-            "steps": ["a", "b", "c"]
-          }
 
     - name: Generate Job Summary (file + yaml)
       id: job-summary-yaml

@@ -2,14 +2,14 @@ name: Jinja2
 description: Renders Jinja2 templates
 inputs:
   template:
-    description: 'Path to the template file'
+    description: 'Path or contents of the template'
     required: true
   template-format:
-    description: 'To be used with the "template" input, can be one of: file, pipe'
+    description: 'To be used with the "template" input, can be one of: string, file'
     required: false
     default: string
   variables:
-    description: 'Path to the variables file'
+    description: 'Path or contents of the variables'
     required: false
   variables-format:
     description: 'To be used with the "variables" input, can be one of: env, env_file, ini, ini_file, yaml, yaml_file, json, json_file'
