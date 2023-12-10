@@ -51,4 +51,4 @@ runs:
         echo 'output<<EOF'
         cat ${{ steps.cli.outputs.output }}
         echo 'EOF'
-      } >> $GITHUB_OUTPUT
+      } | tee $GITHUB_OUTPUT
