@@ -28,17 +28,28 @@ inputs:
     required: false
     default: false
 runs:
-  using: docker
-  # image: docker://ghcr.io/swaglive/jinja2:3.1.2
-  image: Dockerfile
+  using: composite
+  steps:
+  - shell: bash
+    id: create
+    run: |
+      echo hello
+
+  - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
+    with:
+      args:
+      - --help
+
+  # using: docker
+  # image: Dockerfile
   # args: [
   #   '--format', '${{ github.env.STATE_variables-format }}',
   #   '--outfile', '${{ github.env.STATE_output }}',
   #   '${{ github.env.STATE_template }}',
   #   '${{ github.env.STATE_variables }}'
   # ]
-  args: [
-    "--help"
-  ]
-  pre-entrypoint: pre-entrypoint.py
+  # args: [
+  #   "--help"
+  # ]
+  # pre-entrypoint: pre-entrypoint.py
   # post-entrypoint: ./post-entrypoint.py
