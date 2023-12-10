@@ -8,7 +8,6 @@ GITHUB_WORKSPACE = os.environ['GITHUB_WORKSPACE']
 WORKDIR = pathlib.Path(
     tempfile.mkdtemp(prefix='.', dir=GITHUB_WORKSPACE),
 )
-print(os.environ)
 
 def generate_state():
     # Process `template`/`template-format` -> `template`
@@ -33,7 +32,7 @@ def generate_state():
         variables_file.write_text(variables)
         variables = str(variables_file.relative_to(GITHUB_WORKSPACE))        
 
-    yield 'format', variables_format
+    yield 'variables-format', variables_format
     yield 'variables', variables
 
 
