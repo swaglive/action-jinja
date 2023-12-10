@@ -8,6 +8,7 @@ GITHUB_WORKSPACE = os.environ['GITHUB_WORKSPACE']
 WORKDIR = pathlib.Path(
     tempfile.mkdtemp(prefix='.', dir=GITHUB_WORKSPACE),
 )
+print(os.environ)
 
 def generate_state():
     # Process `template`/`template-format` -> `template`
