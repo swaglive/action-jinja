@@ -7,14 +7,14 @@ inputs:
   template-format:
     description: 'To be used with the "template" input, can be one of: file, pipe'
     required: false
-    default: file
+    default: string
   variables:
     description: 'Path to the variables file'
     required: false
   variables-format:
     description: 'To be used with the "variables" input, can be one of: env, env_file, ini, ini_file, yaml, yaml_file, json, json_file'
     required: false
-    default: json
+    default: yaml
   strict:
     description: 'Fails on missing values'
     required: false
