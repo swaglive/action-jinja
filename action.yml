@@ -15,10 +15,6 @@ inputs:
     description: 'To be used with the "variables" input, can be one of: env, env_file, ini, ini_file, yaml, yaml_file, json, json_file'
     required: false
     default: yaml
-  strict:
-    description: 'Fails on missing values'
-    required: false
-    default: false
 outputs:
   output:
     description: 'Contents of the rendered template'
@@ -41,6 +37,7 @@ runs:
       args: >
         --format ${{ steps.cli.outputs.variables-format }}
         --outfile ${{ steps.cli.outputs.output }}
+        --strict
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
 
