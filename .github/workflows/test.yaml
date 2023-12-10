@@ -13,6 +13,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - run: echo $GITHUB_STEP_SUMMARY
+    - run: cat $GITHUB_STEP_SUMMARY
+
     - name: Generate Job Summary
       uses: ./
       with:
@@ -25,4 +28,5 @@ jobs:
             "steps": ["a", "b", "c"]
           }
 
+    - run: echo $GITHUB_STEP_SUMMARY
     - run: cat $GITHUB_STEP_SUMMARY
