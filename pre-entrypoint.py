@@ -37,12 +37,6 @@ def generate_state():
     yield 'variables-format', variables_format
 
 
-    # # Process `output`/`output-format` -> `output`
-    # output_file = WORKDIR.joinpath(f'output')
-    # output = str(output_file.relative_to(GITHUB_WORKSPACE))
-    # yield 'output', output
-
-
 with open(os.environ['GITHUB_OUTPUT'], 'a') as GITHUB_OUTPUT:
     for key, value in generate_state():
         print(f'{key}={value}', file=GITHUB_OUTPUT)

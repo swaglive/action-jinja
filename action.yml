@@ -34,8 +34,6 @@ runs:
       INPUT_TEMPLATE-FORMAT: ${{ inputs.template-format }}
       INPUT_VARIABLES: ${{ inputs.variables }}
       INPUT_VARIABLES-FORMAT: ${{ inputs.variables-format }}
-      INPUT_OUTPUT: ${{ inputs.output }}
-      INPUT_OUTPUT-FORMAT: ${{ inputs.output-format }}
       INPUT_STRICT: ${{ inputs.strict }}
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
