@@ -31,10 +31,10 @@ runs:
   using: docker
   image: docker://ghcr.io/swaglive/jinja2:3.1.2
   args: [
-    '--format', '${{ env.STATE_variables-format }}',
-    '--outfile', '${{ env.STATE_output }}',
-    '${{ env.STATE_template }}',
-    '${{ env.STATE_variables }}'
+    '--format', '${{ github.env.STATE_variables-format }}',
+    '--outfile', '${{ github.env.STATE_output }}',
+    '${{ github.env.STATE_template }}',
+    '${{ github.env.STATE_variables }}'
   ]
   pre-entrypoint: pre-entrypoint.py
   # post-entrypoint: post-entrypoint.py
