@@ -48,7 +48,7 @@ runs:
     shell: bash
     run: |
       {
-        echo 'output << EOF'
-        cat ${{ steps.cli.outputs.output }}; echo
+        echo 'output<<EOF'
+        cat ${{ steps.cli.outputs.output }};
         echo 'EOF'
       } | tee $GITHUB_OUTPUT
