@@ -39,5 +39,5 @@ runs:
   args: [
     "--help"
   ]
-  pre-entrypoint: ["python3", "pre-entrypoint.py"]
+  pre-entrypoint: pre-entrypoint.py
   # post-entrypoint: post-entrypoint.py
