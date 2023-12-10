@@ -17,10 +17,11 @@ jobs:
       uses: ./
       with:
         template: .github/templates/job-summary.md.jinja
-        output: GITHUB_STEP_SUMMARY
-        output-format: env
+        output: summary.md
+        # output-format: env
         variables: |-
           {
             "jobs": 1,
             "steps": ["a", "b", "c"]
           }
+    - run: cat summary.md
