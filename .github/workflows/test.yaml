@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Generate Job Summary
-      id: job-summary
+      id: job-summary-1
       uses: ./
       with:
         template: .github/templates/job-summary.md.jinja
@@ -24,5 +24,15 @@ jobs:
             "steps": ["a", "b", "c"]
           }
 
+    - name: Generate Job Summary
+      id: job-summary-2
+      uses: ./
+      with:
+        template: .github/workflows/test/job-summary.md.jinja
+        variables: .github/workflows/test/variables.yaml
+        variables-format: yaml-file
+
     - name: Save Job Summary
-      run: tee $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary.outputs.output }}'
+      run: |
+        tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-1.outputs.output }}'
+        tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-2.outputs.output }}'
