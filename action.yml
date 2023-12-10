@@ -31,13 +31,13 @@ runs:
   using: composite
   steps:
   - name: Configure CLI options
-    id: options
+    id: cli
     shell: pre-entrypoint.py
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
       args: >
-        --format ${{ steps.options.outputs.variables-format }}
-        --outfile ${{ steps.options.outputs.output }}
-        ${{ steps.options.outputs.template }}
-        ${{ steps.options.outputs.variables }}
+        --format ${{ steps.cli.outputs.variables-format }}
+        --outfile ${{ steps.cli.outputs.output }}
+        ${{ steps.cli.outputs.template }}
+        ${{ steps.cli.outputs.variables }}
