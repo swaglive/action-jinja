@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import os
 import tempfile
 import pathlib
@@ -11,8 +11,8 @@ WORKDIR = pathlib.Path(
 
 def generate_state():
     # Process `template`/`template-format` -> `template`
-    template = os.environ['INPUT_template']
-    template_format = os.environ['INPUT_template-format']
+    template = os.environ['INPUT_TEMPLATE']
+    template_format = os.environ['INPUT_TEMPLATE-FORMAT']
 
     if template_format in {'string'}:
         template_file = WORKDIR.joinpath('template.jinja')
@@ -23,8 +23,8 @@ def generate_state():
 
 
     # Process `variables`/`variables-format` -> `variables`
-    variables = os.environ['INPUT_variables']
-    variables_format = os.environ['INPUT_variables-format']
+    variables = os.environ['INPUT_VARIABLES']
+    variables_format = os.environ['INPUT_VARIABLES-FORMAT']
 
     if not variables_format.endswith('-file'):
         variables_format = variables_format.rstrip('-file')
@@ -37,8 +37,8 @@ def generate_state():
 
 
     # Process `output`/`output-format` -> `output`
-    output = os.environ['INPUT_output']
-    output_format = os.environ['INPUT_output-format']
+    output = os.environ['INPUT_OUTPUT']
+    output_format = os.environ['INPUT_OUTPUT-FORMAT']
 
     if output_format in {'env'}:
         output = os.environ[output]
