@@ -30,27 +30,15 @@ inputs:
 runs:
   using: composite
   steps:
-  - shell: bash
+  - name: Configure CLI options
     id: options
-    run: |
-      echo "template-format=qq" >> "$GITHUB_OUTPUT"
+    shell: python
+    run: pre-entrypoint.py
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
-      args: >-
-        --format ${{ steps.options.outputs.template-format }}}
-        --help
-
-  # using: docker
-  # image: Dockerfile
-  # args: [
-  #   '--format', '${{ github.env.STATE_variables-format }}',
-  #   '--outfile', '${{ github.env.STATE_output }}',
-  #   '${{ github.env.STATE_template }}',
-  #   '${{ github.env.STATE_variables }}'
-  # ]
-  # args: [
-  #   "--help"
-  # ]
-  # pre-entrypoint: pre-entrypoint.py
-  # post-entrypoint: ./post-entrypoint.py
+      args: >
+        --format ${{ steps.options.outputs.variables-format }}
+        --outfile ${{ steps.options.outputs.output }}
+        ${{ steps.options.outputs.template }}
+        ${{ steps.options.outputs.variables }}
