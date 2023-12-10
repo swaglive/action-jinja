@@ -13,10 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Generate Job Summary
+    - name: Generate Job Summary (file + json)
       id: job-summary-json
       uses: ./
       with:
+        template-format: file
         template: .github/workflows/test/job-summary.md.jinja
         variables-format: json
         variables: |-
@@ -25,10 +26,11 @@ jobs:
             "steps": ["a", "b", "c"]
           }
 
-    - name: Generate Job Summary
+    - name: Generate Job Summary (file + yaml)
       id: job-summary-yaml
       uses: ./
       with:
+        template-format: file
         template: .github/workflows/test/job-summary.md.jinja
         variables-format: yaml
         variables: |-
@@ -38,23 +40,25 @@ jobs:
             - b
             - c
 
-    - name: Generate Job Summary
+    - name: Generate Job Summary (file + json-file)
       id: job-summary-json-file
       uses: ./
       with:
+        template-format: file
         template: .github/workflows/test/job-summary.md.jinja
-        variables: .github/workflows/test/variables.json
         variables-format: json-file
+        variables: .github/workflows/test/variables.json
 
-    - name: Generate Job Summary
+    - name: Generate Job Summary (file + yaml-file)
       id: job-summary-yaml-file
       uses: ./
       with:
+        template-format: file
         template: .github/workflows/test/job-summary.md.jinja
-        variables: .github/workflows/test/variables.yaml
         variables-format: yaml-file
+        variables: .github/workflows/test/variables.yaml
 
-    - name: Generate Job Summary
+    - name: Generate Job Summary (string + json)
       id: job-summary-template
       uses: ./
       with:
@@ -68,6 +72,7 @@ jobs:
             {%- for step in steps %}
             - {{ step }}
             {%- endfor %}
+        variables-format: json
         variables: |-
           {
             "jobs": "json",
