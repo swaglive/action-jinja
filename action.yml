@@ -32,7 +32,7 @@ runs:
   steps:
   - name: Configure CLI options
     id: cli
-    shell: pre-entrypoint.py
+    run: python pre-entrypoint.py
 
   - uses: docker://ghcr.io/swaglive/jinja2:3.1.2
     with:
