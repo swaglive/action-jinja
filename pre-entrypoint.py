@@ -47,6 +47,6 @@ def generate_state():
     yield 'output', output
 
 
-with open(os.environ['GITHUB_STATE'], 'a') as GITHUB_STATE:
+with open(os.environ['GITHUB_OUTPUT'], 'a') as GITHUB_OUTPUT:
     for key, value in generate_state():
-        print(f'{key}={value}', file=GITHUB_STATE)
+        print(f'{key}={value}', file=GITHUB_OUTPUT)
