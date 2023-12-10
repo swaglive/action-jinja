@@ -28,10 +28,11 @@ def generate_state():
     variables_format = os.environ['INPUT_VARIABLES-FORMAT']
 
     if not variables_format.endswith('-file'):
-        variables_format = variables_format[:len('-file') - 1]
         variables_file = WORKDIR.joinpath(f'variables.{variables_format}')
         variables_file.write_text(variables)
         variables = str(variables_file.relative_to(GITHUB_WORKSPACE))
+    else:
+        variables_format = variables_format[:len('-file') - 1]
 
     yield 'variables', variables
     yield 'variables-format', variables_format
