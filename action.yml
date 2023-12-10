@@ -50,5 +50,3 @@ runs:
         --outfile ${{ steps.cli.outputs.output }}
         ${{ steps.cli.outputs.template }}
         ${{ steps.cli.outputs.variables }}
-
-  
