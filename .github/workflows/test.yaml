@@ -20,9 +20,29 @@ jobs:
         template: .github/workflows/test/job-summary.md.jinja
         variables: |-
           {
-            "jobs": 1,
+            "jobs": "json",
             "steps": ["a", "b", "c"]
           }
+
+    - name: Generate Job Summary
+      id: job-summary-yaml
+      uses: ./
+      with:
+        template: .github/workflows/test/job-summary.md.jinja
+        variables: |-
+          job: yaml
+          steps:
+            - a
+            - b
+            - c
+
+    - name: Generate Job Summary
+      id: job-summary-json-file
+      uses: ./
+      with:
+        template: .github/workflows/test/job-summary.md.jinja
+        variables: .github/workflows/test/variables.json
+        variables-format: json-file
 
     - name: Generate Job Summary
       id: job-summary-yaml-file
@@ -35,4 +55,6 @@ jobs:
     - name: Save Job Summary
       run: |
         tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-json.outputs.output }}'
+        tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-yaml.outputs.output }}'
+        tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-json-file.outputs.output }}'
         tee -a $GITHUB_STEP_SUMMARY <<< $'${{ steps.job-summary-yaml-file.outputs.output }}'

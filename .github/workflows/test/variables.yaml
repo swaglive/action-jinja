@@ -1,4 +1,4 @@
-jobs: 2
+jobs: yaml-file
 steps:
 - x
 - y
