@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: /
+  schedule:
+    interval: daily
+  reviewers:
+  - swaglive/backend-maintainers
+  labels:
+  - p2
+  - optimization
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: daily
+  reviewers:
+  - swaglive/backend-maintainers
+  labels:
+  - p2
+  - optimization
+- package-ecosystem: docker
+  directory: /
+  schedule:
+    interval: daily
+  reviewers:
+  - swaglive/backend-maintainers
+  labels:
+  - p2
+  - optimization
