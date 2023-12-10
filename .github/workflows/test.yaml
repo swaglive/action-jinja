@@ -22,7 +22,7 @@ jobs:
         variables-format: json
         variables: |-
           {
-            "jobs": "json",
+            "job": "json",
             "steps": ["a", "b", "c"]
           }
 
@@ -64,7 +64,7 @@ jobs:
       with:
         template-format: string
         template: |-
-          * Jobs: {{ jobs }}
+          * Job: {{ job }}
           * Steps
             - a
             - b
@@ -75,7 +75,7 @@ jobs:
         variables-format: json
         variables: |-
           {
-            "jobs": "json",
+            "job": "json",
             "steps": ["a", "b", "c"]
           }
 
