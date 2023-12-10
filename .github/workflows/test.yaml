@@ -75,7 +75,7 @@ jobs:
         variables-format: json
         variables: |-
           {
-            "job": "json",
+            "job": "template",
             "steps": ["a", "b", "c"]
           }
 
