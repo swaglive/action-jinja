@@ -28,7 +28,7 @@ runs:
   steps:
   - id: cli
     shell: bash
-    run: python pre-entrypoint.py
+    run: python main.py
     env:
       INPUT_TEMPLATE: ${{ inputs.template }}
       INPUT_TEMPLATE-FORMAT: ${{ inputs.template-format }}
