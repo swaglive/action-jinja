@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    
+    - run: tree -L 2 /home/runner/work/action-jinja/
 
     - name: Generate Job Summary
       uses: swaglive/action-jinja@main
