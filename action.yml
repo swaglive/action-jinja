@@ -29,7 +29,8 @@ inputs:
     default: false
 runs:
   using: docker
-  image: docker://ghcr.io/swaglive/jinja2:3.1.2
+  # image: docker://ghcr.io/swaglive/jinja2:3.1.2
+  image: Dockerfile
   # args: [
   #   '--format', '${{ github.env.STATE_variables-format }}',
   #   '--outfile', '${{ github.env.STATE_output }}',
