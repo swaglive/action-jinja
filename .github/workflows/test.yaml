@@ -15,7 +15,7 @@ jobs:
 
     - name: Generate Job Summary (file + json)
       id: job-summary-json
-      uses: ./
+      uses: swaglive/action-jinja@main
       with:
         template-format: file
         template: .github/workflows/test/job-summary.md.jinja
