@@ -49,4 +49,4 @@ runs:
         cat ${{ steps.cli.outputs.output }}
         echo ''
         echo 'EOF'
-      } | tee -a $GITHUB_OUTPUT
+      } | tee -a $GITHUB_OUTPUT > /dev/null
